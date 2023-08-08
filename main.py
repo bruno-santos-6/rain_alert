@@ -2,16 +2,19 @@ import requests
 from twilio.rest import Client
 from twilio.http.http_client import TwilioHttpClient
 import os
+from dotenv import load_dotenv
+
+# -------------- Exporting Environment Variables --------------
+load_dotenv(".env")
 
 # ---------------------- Twilio API Info ----------------------
-account_sid = "Your Account SID"
-auth_token = "Your auth token"
-twilio_numer = "+12059527423"
-my_verified_number = "Your verified number"
+account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+twilio_numer = os.getenv("TWILIO_NUMBER")
+my_verified_number = os.getenv("MY_TWILIO_VERIFIED_NUMBER")
 
-# ---------------------- Weather API Info ----------------------
-angela_api_key = "69f04e4613056b159c2761a9d9e664d2"
-api_key = "Your API Key"
+# --------------- Open Weather Map API Info (OWM) ---------------
+api_key = os.environ.get("OWM_API_KEY")
 city_latitude = -23.179140
 city_longitude = -45.887241
 OWM_endpoint = "https://api.openweathermap.org/data/2.5/onecall"
@@ -19,7 +22,7 @@ OWM_endpoint = "https://api.openweathermap.org/data/2.5/onecall"
 parameters = {
     "lat": city_latitude,
     "lon": city_longitude,
-    "appid": angela_api_key,
+    "appid": api_key,
     "exclude": "current,minutely,daily"
 }
 
