@@ -1,6 +1,6 @@
 import requests
 from twilio.rest import Client
-from twilio.http.http_client import TwilioHttpClient
+# from twilio.http.http_client import TwilioHttpClient
 import os
 from dotenv import load_dotenv
 
@@ -35,10 +35,10 @@ weather_slice = weather_data["hourly"][:12]
 weather_list = [True for hour_data in weather_slice if hour_data["weather"][0]["id"] > 700]
 
 if weather_list:
-    proxy_client = TwilioHttpClient()
-    proxy_client.session.proxies = {"https": os.environ["https_proxy"]}
+    # proxy_client = TwilioHttpClient()
+    # proxy_client.session.proxies = {"https": os.environ["https_proxy"]}
 
-    client = Client(account_sid, auth_token, http_client=proxy_client)
+    client = Client(account_sid, auth_token) #, http_client=proxy_client)
     message = client.messages \
         .create(
     body = "It's going to rain today. Remember to bring an ☔",
